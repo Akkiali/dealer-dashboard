@@ -8,7 +8,6 @@ import DashboardCards from "./components/DashboardCards";
 import type { DashboardResponse } from "./types";
 import TargetAchievedChart from "./components/TargetAchievedChart";
 import DealersTable from "./components/DealersTable";
-import NavigationBar from "./components/NavigationBar";
 
 
 
@@ -19,15 +18,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  // this is for navbar
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const handleDealerPortalClick = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
 
   async function fetchDashboardData(
     month = "",
@@ -69,10 +60,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#f4f7fb]">
-      {/* this navbar is for dealer portal, it will scroll to top when clicked */}
-      <NavigationBar onDealerPortalClick={handleDealerPortalClick} />
-
-      <div className="lg:ml-56">
+      <div>
         <Header
           onToggleSidebar={() => setSidebarCollapsed((collapsed) => !collapsed)}
           onToggleMobileFilters={() => setMobileFiltersOpen((open) => !open)}
@@ -85,6 +73,7 @@ export default function Home() {
             onToggle={() => setSidebarCollapsed((collapsed) => !collapsed)}
             onApply={(month, financialYear) => {
               fetchDashboardData(month, financialYear);
+              setMobileFiltersOpen(false);
             }}
           />
 
