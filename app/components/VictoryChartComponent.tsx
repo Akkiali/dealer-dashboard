@@ -7,7 +7,6 @@ import {
    VictoryAxis,
    VictoryBar,
    VictoryChart,
-   VictoryLegend,
    VictoryTheme,
 } from "victory";
 
@@ -65,24 +64,6 @@ export default function VictoryChartComponent({
                right: isMobile ? 4 : 12,
             }}
          >
-            <VictoryLegend
-               x={isMobile ? 18 : 35}
-               y={isMobile ? 0 : 5}
-               orientation="horizontal"
-               gutter={isMobile ? 7 : 15}
-               style={{
-                  labels: {
-                     fontSize: isMobile ? 9 : 12,
-                     fontWeight: 600,
-                     fill: "#52627a",
-                  },
-               }}
-               data={[
-                  { name: "Target Quantity", symbol: { fill: "#ef5b3f" } },
-                  { name: "Achieved Quantity", symbol: { fill: "#f4d95d" } },
-               ]}
-            />
-
             <VictoryAxis
                tickValues={months.map((_, index) => index + 1)}
                tickFormat={months}
